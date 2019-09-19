@@ -11,7 +11,7 @@ public class GoogleInicialPage
 	private WebDriver browser 	= new ChromeDriver();
 	private WebDriverWait wait 	= new WebDriverWait(browser, 9999);
 	
-	private String url			= "https://google.com.br";
+	private String url			= "https://www.google.com.br/";
 	private By inputPesrquisar	= By.xpath("//input[@name='q']");
 	private By btnPesquisar		= By.xpath("(//input[@name='btnK'])[2]");
 	private By txtResultado		= By.id("resultStats");
@@ -39,6 +39,12 @@ public class GoogleInicialPage
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(txtResultado));
 		return browser.findElement(txtResultado).getText().substring(0,15);
+	}
+	
+	public Boolean conferirSeEstouNaPaginaInicial()
+	{
+		String paginaAtual = browser.getCurrentUrl();
+		return url.equals(paginaAtual);
 	}
 
 	public void fecharPagina()

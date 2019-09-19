@@ -17,13 +17,18 @@ public class GooglePesquisaSteps
 		pagina.abrirPagina();
 	}
 
+	
+	
+	/**
+	 * pesquisaSuccess
+	 **/
 	@Quando("^eu pesquisar por um assunto$")
 	public void euPesquisarPorUmAssunto() 
 	{
 		pagina.preencherFormPesquisa("Teste Automatizado");
 		pagina.pesquisar();
 	}
-
+	
 	@Entao("^me retorna os resultados indexados$")
 	public void meRetornaOsResultadosIndexados() 
 	{
@@ -31,5 +36,25 @@ public class GooglePesquisaSteps
 		pagina.fecharPagina();
 		
 		assertEquals("Aproximadamente", txtAssertPage);
+	}
+
+	
+	
+	/**
+	 * pesquisaUndefined
+	 **/
+	@Quando("^eu pesquisar sem preencher o assunto$")
+	public void euPesquisarSemPreencherOAssunto()
+	{
+		pagina.pesquisar();
+	}
+	
+	@Entao("^continuarei na mesma pagian aguardando um assunto$")
+	public void continuareiNaMesmaPagianAguardandoUmAssunto()
+	{
+		Boolean mesmaPagina = pagina.conferirSeEstouNaPaginaInicial();
+		pagina.fecharPagina();
+		
+		assertEquals(true, mesmaPagina);
 	}
 }
