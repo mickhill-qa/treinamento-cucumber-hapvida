@@ -23,7 +23,7 @@ import cucumber.api.junit.Cucumber;
 		},
 		
 		tags = {		// tags = "@TagQueSeraExecutada" ou {"~@ignore"}
-			""
+			"@pesquisaValida"
 		}
 )
 
