@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleInicialPage
 {
-	private WebDriver browser 	= new ChromeDriver();
-	private WebDriverWait wait 	= new WebDriverWait(browser, 9999);
+	private WebDriver browser;
+	private WebDriverWait wait;
 	
 	private String url			= "https://www.google.com.br/";
 	private By inputPesrquisar	= By.xpath("//input[@name='q']");
@@ -18,6 +18,15 @@ public class GoogleInicialPage
 	
 	
 	
+	public GoogleInicialPage()
+	{
+		super();
+
+		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
+		browser = new ChromeDriver();
+		wait 	= new WebDriverWait(browser, 9999);
+	}
+
 	public void abrirPagina()
 	{
 		browser.get(url);
@@ -26,12 +35,11 @@ public class GoogleInicialPage
 	public void preencherFormPesquisa(String pesquisa)
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(inputPesrquisar));
-		browser.findElement(By.xpath("//input[@name='q']")).sendKeys(pesquisa);
+		browser.findElement(inputPesrquisar).sendKeys(pesquisa);
 	}
 
 	public void pesquisar()
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(btnPesquisar));
 		browser.findElement(btnPesquisar).click();
 	}
 
