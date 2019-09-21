@@ -2,7 +2,7 @@ package page_objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,10 +20,12 @@ public class GoogleInicialPage
 	
 	public GoogleInicialPage()
 	{
-		super();
-
-		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
-		browser = new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\web-drive\\geckodriver.exe");
+		WebDriver browser = new FirefoxDriver();
+		
+//		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
+//		browser = new ChromeDriver();
+		
 		wait 	= new WebDriverWait(browser, 9999);
 	}
 
