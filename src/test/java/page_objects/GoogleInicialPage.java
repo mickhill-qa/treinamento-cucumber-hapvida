@@ -24,7 +24,7 @@ public class GoogleInicialPage
 //		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\web-drive\\geckodriver.exe");
 //		WebDriver browser = new FirefoxDriver();
 		
-		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
+//		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
 		browser = new ChromeDriver();
 		
 		wait 	= new WebDriverWait(browser, 9999);
