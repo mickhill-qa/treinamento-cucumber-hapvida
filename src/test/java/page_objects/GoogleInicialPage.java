@@ -1,6 +1,7 @@
 package page_objects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,7 +24,7 @@ public class GoogleInicialPage
 //		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\web-drive\\geckodriver.exe");
 //		WebDriver browser = new FirefoxDriver();
 		
-//		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
 		browser = new ChromeDriver();
 		
 		wait 	= new WebDriverWait(browser, 9999);
@@ -38,6 +39,7 @@ public class GoogleInicialPage
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(inputPesrquisar));
 		browser.findElement(inputPesrquisar).sendKeys(pesquisa);
+		browser.findElement(inputPesrquisar).sendKeys(Keys.ESCAPE);
 	}
 
 	public void pesquisar()
