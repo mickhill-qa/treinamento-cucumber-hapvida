@@ -15,7 +15,7 @@ public class GoogleInicialPage
 	private String url			= "https://www.google.com.br/";
 	private By inputPesrquisar	= By.xpath("//input[@name='q']");
 	private By btnPesquisar		= By.xpath("(//input[@name='btnK'])[2]");
-	private By txtResultado		= By.id("resultStats");
+	private By txtResultado		= By.id("result-stats");
 	
 	
 	
