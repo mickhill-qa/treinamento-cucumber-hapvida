@@ -1,17 +1,14 @@
-package page_objects;
+package pages;
+
+import org.junit.Assert;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleInicialPage
+public class GoogleInicialPage extends BasePage
 {
-	private WebDriver browser;
-	private WebDriverWait wait;
-	
 	private String url			= "https://www.google.com.br/";
 	private By inputPesrquisar	= By.xpath("//input[@name='q']");
 	private By optionsPesrquisa = By.cssSelector("#tsf > div:nth-child(2) > div > div > div > ul > li");
@@ -19,16 +16,9 @@ public class GoogleInicialPage
 	private By txtResultado		= By.id("result-stats");
 	
 	
-	
-	public GoogleInicialPage()
+	public GoogleInicialPage(WebDriver _browser)
 	{
-//		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\web-drive\\geckodriver.exe");
-//		WebDriver browser = new FirefoxDriver();
-		
-//		System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\web-drive\\chromedriver.exe");
-		browser = new ChromeDriver();
-		
-		wait 	= new WebDriverWait(browser, 9999);
+		super(_browser);
 	}
 
 	public void abrirPagina()
@@ -42,7 +32,7 @@ public class GoogleInicialPage
 		browser.findElement(inputPesrquisar).sendKeys(pesquisa);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(optionsPesrquisa));
-		browser.findElement(inputPesrquisar).sendKeys(Keys.ESCAPE);
+		actions.sendKeys(Keys.ESCAPE).perform();
 	}
 
 	public void pesquisar()
@@ -56,14 +46,9 @@ public class GoogleInicialPage
 		return browser.findElement(txtResultado).getText().substring(0,15);
 	}
 	
-	public Boolean conferirSeEstouNaPaginaInicial()
+	public void conferirSeEstouNaPaginaInicial()
 	{
 		String paginaAtual = browser.getCurrentUrl();
-		return url.equals(paginaAtual);
-	}
-
-	public void fecharPagina()
-	{
-		browser.quit();
+		Assert.assertEquals(true, url.equals(paginaAtual));
 	}
 }

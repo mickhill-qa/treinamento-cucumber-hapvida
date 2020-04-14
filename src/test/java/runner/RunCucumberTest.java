@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = "src/test/resources/features",	// Path: features = "classpath:features"
-		glue = "steps_definitions",					// Path: Steps
+		glue = "steps",					// Path: Steps
 		monochrome = true,							// Cores no Terminal default: false
 		snippets = SnippetType.CAMELCASE,			// METHODOS do Steps em CAMELCASE
 		strict = true,								// Considerar steps indefinidos erros ou nao, default: false
@@ -27,6 +27,6 @@ import cucumber.api.junit.Cucumber;
 		}
 )
 
-public class RunCucumberTest {
-
+public class RunCucumberTest
+{
 }
