@@ -14,6 +14,7 @@ public class GoogleInicialPage
 	
 	private String url			= "https://www.google.com.br/";
 	private By inputPesrquisar	= By.xpath("//input[@name='q']");
+	private By optionsPesrquisa = By.cssSelector("#tsf > div:nth-child(2) > div > div > div > ul > li");
 	private By btnPesquisar		= By.xpath("(//input[@name='btnK'])[2]");
 	private By txtResultado		= By.id("result-stats");
 	
@@ -39,6 +40,8 @@ public class GoogleInicialPage
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(inputPesrquisar));
 		browser.findElement(inputPesrquisar).sendKeys(pesquisa);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(optionsPesrquisa));
 		browser.findElement(inputPesrquisar).sendKeys(Keys.ESCAPE);
 	}
 
