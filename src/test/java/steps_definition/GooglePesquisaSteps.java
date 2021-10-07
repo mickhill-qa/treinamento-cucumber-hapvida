@@ -26,7 +26,9 @@ public class GooglePesquisaSteps extends BaseSteps
     public void que_eu_esteja_na_pagina_inicial_do_google()
     {
         pageHome.abrirPagina();
-        pageHome.getUrl();
+        String expectedPage = pageHome.getUrl();
+        String currentPage = browser.getCurrentUrl();
+        Assert.assertTrue( expectedPage.equals(currentPage) );
         BaseSteps.screenShotNow();
     }
 
