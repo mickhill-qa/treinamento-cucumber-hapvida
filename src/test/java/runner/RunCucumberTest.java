@@ -1,19 +1,17 @@
 package runner;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
-import cucumber.api.junit.Cucumber;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",	// Path: features = "classpath:features"
-        glue = "steps_definition",					// Path: Steps
-        monochrome = true,							// Cores no Terminal default: false
-        snippets = SnippetType.UNDERSCORE,			// METHODOS do Steps em CAMELCASE
-        strict = true,								// Considerar steps indefinidos erros ou nao, default: false
-        dryRun = false,								// Validar Steps sem executar o teste
-        plugin = {									// Plugins Cucumber para possivel integracao com Jenkins
+        features = "src/test/resources/features",	            // Path: features = "classpath:features"
+        glue = "steps_definition",					            // Path: Steps
+        monochrome = false,							            // Cores no Terminal default: false
+        snippets = CucumberOptions.SnippetType.UNDERSCORE,		// METHODOS do Steps em CAMELCASE
+        dryRun = false,								            // Validar Steps sem executar o teste
+        plugin = {									            // Plugins Cucumber para possivel integracao com Jenkins
                 "pretty",
                 //"html:target/cucumber-reports",
                 "junit:target/cucumber-reports/cucumber.xml",

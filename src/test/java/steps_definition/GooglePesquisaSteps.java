@@ -1,9 +1,9 @@
 package steps_definition;
 
 import base_class.BaseSteps;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Entao;
-import cucumber.api.java.pt.Quando;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 import org.junit.Assert;
 import page_objects.PesquisaPage;
 import page_objects.ResultadosPage;

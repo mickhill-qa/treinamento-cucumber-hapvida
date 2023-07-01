@@ -1,11 +1,14 @@
 package base_class;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import support.BrowserFactory;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseSteps
 {
@@ -29,11 +32,11 @@ public class BaseSteps
     public static void screenShotNow()
     {
         try {
+            String dataHora = (new SimpleDateFormat("yyyy-MM-dd_-_HH-mm-ss-SSS")).format(new Date());
             byte[] screenshot = ((TakesScreenshot) BaseSteps.browser).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png");
-            scenario.write("URL ScreenShot: " + BaseSteps.browser.getCurrentUrl());
+            scenario.attach(screenshot, "image/png", dataHora + ".png");
         } catch (WebDriverException wde) {
-            scenario.write("Embed ScreenShot " + wde.getMessage());
+            scenario.log("Embed ScreenShot " + wde.getMessage());
         } catch (ClassCastException cce) {
             cce.printStackTrace();
         }

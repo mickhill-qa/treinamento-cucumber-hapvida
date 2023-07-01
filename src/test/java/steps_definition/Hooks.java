@@ -1,9 +1,9 @@
 package steps_definition;
 
 import base_class.BaseSteps;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class Hooks
 {
