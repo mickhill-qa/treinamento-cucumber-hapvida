@@ -18,7 +18,7 @@ public class BrowserFactory
 
     public static WebDriver getBrownser()
     {
-        return getBrownser(Browser.CHROME); // Browser Default
+        return getBrownser(Browser.CHROME_HEADLESS); // Browser Default
     }
 
     public static WebDriver getBrownser(Browser browserUser)
