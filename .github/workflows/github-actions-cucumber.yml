@@ -43,8 +43,9 @@ jobs:
           pip install requests beautifulsoup4 pandas webdriver-manager selenium
 
       - name: Executando Test
-        run: mvn test
-        run: 'https://mickhill-qa.github.io/treinamento-cucumber-hapvida/feature-overview.html'
+        run: |
+          mvn test
+          'https://mickhill-qa.github.io/treinamento-cucumber-hapvida/feature-overview.html'
 
       - name: Gerando Relatorio
         run: mvn verify -DskipTests
