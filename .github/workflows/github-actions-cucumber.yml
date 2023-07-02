@@ -20,22 +20,25 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  LANG: "pt_BR.UTF-8"
+  LANGUAGE: "pt_BR:pt"
+  LC_ALL: "pt_BR.UTF-8"
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Brasil
+      - name: Setup timezone America/Sao_Paulo
+        uses: szenius/set-timezone@v1.2
+        with:
+          timezoneLinux: "America/Sao_Paulo"
+
+      - name: Setup LANG=pt_BR.UTF-8
         run: |
           sudo locale-gen pt_BR.UTF-8
           sudo update-locale LANG=pt_BR.UTF-8
-          
-      - name: date
-        run: |
           date
-
-      - uses: szenius/set-timezone@v1.2
-        with:
-          timezoneLinux: "America/Sao_Paulo"
 
       - name: Configure git repository
         uses: actions/checkout@v3
