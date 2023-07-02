@@ -39,8 +39,9 @@ public class GooglePesquisaSteps extends BaseSteps {
 
     @Entao("^me retorna os resultados indexados$")
     public void me_retorna_os_resultados_indexados() {
-        String txtAssertPage = pageResult.verResultadoPesquisa();
-        Assert.assertEquals("Aproximadamente", txtAssertPage);
+        int nunScreen = pageResult.verResultadoPesquisa();
+        scenario.log("Resultados Pesquisa: " + nunScreen);
+        Assert.assertTrue(nunScreen > 0);
         screenshot();
     }
 
