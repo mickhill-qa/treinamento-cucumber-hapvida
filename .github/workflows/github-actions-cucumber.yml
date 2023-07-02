@@ -51,12 +51,9 @@ jobs:
           cache: maven
 
       - name: Configurando WebDriver for Chrome
-        run: |
-          apt list --installed
-          sudo apt purge google-chrome-stable
-          sudo apt purge chromium-browser
-          sudo apt install -y chromium-browser
-          pip install requests beautifulsoup4 pandas webdriver-manager selenium
+        uses: nanasess/setup-chromedriver@v1
+        with:
+          chromedriver-version: '102.0.5005.61'
 
       - name: Executando Test
         run: mvn test
