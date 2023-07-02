@@ -58,6 +58,7 @@ public class BrowserFactory {
 
                 options = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
+                options.addArguments("--lang=pt-BR");
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
                 options.addArguments("--window-size=1920,1080");
