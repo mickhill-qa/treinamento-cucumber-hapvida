@@ -16,6 +16,8 @@ public class ResultadosPage extends BasePage
     public String verResultadoPesquisa()
     {
         waitElementVisible(txtResultado, 5);
-        return browser.findElement(txtResultado).getText().substring(0,15);
+        String texto = browser.findElement(txtResultado).getText();
+        String[] vetorTexto = texto.split(" ");
+        return vetorTexto[0];
     }
 }
