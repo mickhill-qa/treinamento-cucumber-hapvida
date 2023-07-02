@@ -9,27 +9,22 @@ import support.BrowserFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BaseSteps
-{
+public class BaseSteps {
     public static WebDriver browser;
     public static Scenario scenario;
 
-    public static void OpenBrowser() throws Throwable
-    {
+    public static void OpenBrowser() {
         if (browser != null) return;
         browser = BrowserFactory.getBrownser();
     }
 
-    public static void CloseBrowser() throws Throwable
-    {
+    public static void CloseBrowser() {
         if (browser == null) return;
         browser.quit();
         browser = null;
-        Thread.sleep(1500);
     }
 
-    public static void screenshot()
-    {
+    public static void screenshot() {
         try {
             String dataHora = (new SimpleDateFormat("yyyy-MM-dd_-_HH-mm-ss-SSS")).format(new Date());
             byte[] screenshot = ((TakesScreenshot) BaseSteps.browser).getScreenshotAs(OutputType.BYTES);

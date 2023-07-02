@@ -1,8 +1,10 @@
 package runner;
 
-import org.junit.AfterClass;
+import base_class.BaseSteps;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 import com.rajatthareja.reportbuilder.ReportBuilder;
@@ -37,34 +39,34 @@ import java.util.List;
          *
          *	$ mvn clean
          *	$ mvn clean test
-         *
-         *
-         * Gerar Relatorio Cucumber localmente
-         *
-         *	$ mvn verify -DskipTests
-         *	$ mvn test verify
-         *	$ mvn clean test verify
-         *	$ mvn clean test -Dcucumber.options="--tags @tagScenario" verify
          * */
 )
 
 public class RunCucumberTest {
-        @AfterClass
-        public static void writeExtentReport() {
-                // https://reportbuilderjava.rajatthareja.com/
-                List<Object> cucumberJsonReports = new ArrayList<>();
-                ReportBuilder reportBuilder = new ReportBuilder();
+    @BeforeClass
+    public static void BeforeAllTest() throws Throwable {
+        BaseSteps.OpenBrowser();
+    }
 
-                cucumberJsonReports.add(new File("target/cucumber/index.json"));
-                reportBuilder.setReportDirectory("target/report-builder/");
-                reportBuilder.setReportFileName("index");
-                reportBuilder.setReportColor(Color.PURPLE); // http://materializecss.com/color.html
-                reportBuilder.setReportTitle("treinamento_cucumber_hapvida");
-                reportBuilder.setAdditionalInfo("Date", (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")).format(new Date()));
-                reportBuilder.setAdditionalInfo("Environment", "N/A");
-                reportBuilder.setAdditionalInfo("Browser", "");
-                reportBuilder.setAdditionalInfo("Url", "");
-                reportBuilder.setAdditionalInfo("Runtime", "");
-                reportBuilder.build(cucumberJsonReports);
-        }
+    @AfterClass
+    public static void AfterAllTest() throws Throwable {
+        BaseSteps.CloseBrowser();
+
+        // Report-Builder
+        List<Object> cucumberJsonReports = new ArrayList<>();
+        ReportBuilder reportBuilder = new ReportBuilder();
+        String dataReport = (new SimpleDateFormat("MMM dd, yyyy (EEE) | HH:mm:ss zzz")).format(new Date());
+
+        cucumberJsonReports.add(new File("target/cucumber/index.json"));
+        reportBuilder.setReportDirectory("target/report-builder/");
+        reportBuilder.setReportFileName("index");
+        reportBuilder.setReportColor(Color.PURPLE); // http://materializecss.com/color.html
+        reportBuilder.setReportTitle("treinamento_cucumber_hapvida");
+        reportBuilder.setAdditionalInfo("Date", dataReport);
+        reportBuilder.setAdditionalInfo("Environment", "N/A");
+        reportBuilder.setAdditionalInfo("Browser", "N/A");
+        reportBuilder.setAdditionalInfo("Url", "N/A");
+        reportBuilder.setAdditionalInfo("Runtime", "N/A");
+        reportBuilder.build(cucumberJsonReports);
+    }
 }

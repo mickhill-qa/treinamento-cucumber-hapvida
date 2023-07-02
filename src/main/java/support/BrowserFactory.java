@@ -14,29 +14,26 @@ import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BrowserFactory
-{
-    public static enum Browser
-    {
+public class BrowserFactory {
+    public static enum Browser {
         CHROME,
         CHROME_HEADLESS,
         FIREFOX,
         FIREFOX_HEADLESS
     }
 
-    public static WebDriver getBrownser() throws FileNotFoundException {
+    public static WebDriver getBrownser() {
         return getBrownser(Browser.CHROME_HEADLESS); // Browser Default
     }
 
-    public static WebDriver getBrownser(Browser browserUser) throws FileNotFoundException {
+    public static WebDriver getBrownser(Browser browserUser) {
         ChromeOptions options;
         WebDriver resultBrowser;
 
         // reduzindo output do webdriver
         Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE);
 
-        switch (browserUser)
-        {
+        switch (browserUser) {
             case CHROME:
                 // reduzindo output do webdriver
                 System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
