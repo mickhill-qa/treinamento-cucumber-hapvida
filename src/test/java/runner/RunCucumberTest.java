@@ -60,7 +60,7 @@ public class RunCucumberTest {
         cucumberJsonReports.add(new File("target/cucumber/index.json"));
         reportBuilder.setReportDirectory("target/report-builder/");
         reportBuilder.setReportFileName("index");
-        reportBuilder.setReportColor(Color.PURPLE); // http://materializecss.com/color.html
+        reportBuilder.setReportColor(Color.CYAN); // http://materializecss.com/color.html
         reportBuilder.setReportTitle("treinamento_cucumber_hapvida");
         reportBuilder.setAdditionalInfo("Date", dataReport);
         reportBuilder.setAdditionalInfo("Environment", "N/A");
