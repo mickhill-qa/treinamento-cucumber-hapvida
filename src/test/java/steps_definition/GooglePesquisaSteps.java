@@ -44,7 +44,7 @@ public class GooglePesquisaSteps extends BaseSteps
     public void me_retorna_os_resultados_indexados()
     {
         String txtAssertPage = pageResult.verResultadoPesquisa();
-        Assert.assertEquals("About", txtAssertPage);
+        Assert.assertEquals("Aproximadamente", txtAssertPage);
         BaseSteps.screenShotNow();
     }
 

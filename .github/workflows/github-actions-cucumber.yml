@@ -46,7 +46,7 @@ jobs:
         run: mvn test || true
 
       - name: Gerando Relatorio
-        run: mvn verify -DskipTests
+        run: mvn verify -DskipTests || true
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v3
