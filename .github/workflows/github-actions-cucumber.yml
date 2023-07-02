@@ -43,7 +43,7 @@ jobs:
         run: mvn test-compile
 
       - name: Executando Test
-        run: mvn test || true
+        run: mvn test
 
       - name: Gerando Relatorio
         run: mvn verify -DskipTests || true
