@@ -32,18 +32,17 @@ public class BrowserFactory
         ChromeOptions options;
         WebDriver resultBrowser;
 
-        // redirect console output from webdriver to the file webdriver_log.txt in the target folder
-        DriverService.Builder<ChromeDriverService, ChromeDriverService.Builder> serviceBuilder = new ChromeDriverService.Builder();
-        ChromeDriverService chromeDriverService = serviceBuilder.build();
-        chromeDriverService.sendOutputTo(new FileOutputStream("target/webdriver_log.txt", true));
+        // reduzindo output do webdriver
         Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE);
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
 
         switch (browserUser)
         {
             case CHROME:
-                WebDriverManager.chromedriver().setup();
+                // reduzindo output do webdriver
+                System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
+
                 options = new ChromeOptions();
+                WebDriverManager.chromedriver().setup();
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-crash-reporter");
                 options.addArguments("--disable-extensions");
@@ -53,16 +52,19 @@ public class BrowserFactory
                 options.addArguments("--disable-notifications");
                 options.addArguments("--log-level=3");
                 options.addArguments("--output=/dev/null");
-                resultBrowser = new ChromeDriver(chromeDriverService, options);
+                resultBrowser = new ChromeDriver(options);
                 resultBrowser.manage().window().maximize();
                 break;
             case CHROME_HEADLESS:
-                WebDriverManager.chromedriver().setup();
+                // reduzindo output do webdriver
+                System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
+
                 options = new ChromeOptions();
-                options.addArguments("--window-size=1920,1080");
-                options.addArguments("--no-sandbox");
+                WebDriverManager.chromedriver().setup();
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
+                options.addArguments("--window-size=1920,1080");
+                options.addArguments("--no-sandbox");
                 options.addArguments("--disable-crash-reporter");
                 options.addArguments("--disable-extensions");
                 options.addArguments("--disable-in-process-stack-traces");
@@ -71,7 +73,7 @@ public class BrowserFactory
                 options.addArguments("--disable-notifications");
                 options.addArguments("--log-level=3");
                 options.addArguments("--output=/dev/null");
-                resultBrowser = new ChromeDriver(chromeDriverService, options);
+                resultBrowser = new ChromeDriver(options);
                 break;
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
