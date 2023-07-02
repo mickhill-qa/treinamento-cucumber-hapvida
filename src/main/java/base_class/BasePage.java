@@ -6,14 +6,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage
-{
+public class BasePage {
     protected WebDriver browser;
     protected WebDriverWait wait;
     protected Actions actions;
 
-    public BasePage(WebDriver _browser)
-    {
+    public BasePage(WebDriver _browser) {
         browser = _browser;
         actions = new Actions(browser);
     }

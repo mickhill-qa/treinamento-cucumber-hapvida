@@ -1,39 +1,34 @@
 package base_class;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import support.BrowserFactory;
 
-public class BaseSteps
-{
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class BaseSteps {
     public static WebDriver browser;
     public static Scenario scenario;
 
-    public static void OpenBrowser() throws Throwable
-    {
+    public static void OpenBrowser() {
         if (browser != null) return;
         browser = BrowserFactory.getBrownser();
     }
 
-    public static void CloseBrowser() throws Throwable
-    {
+    public static void CloseBrowser() {
         if (browser == null) return;
         browser.quit();
         browser = null;
-        Thread.sleep(1500);
     }
 
-    public static void screenShotNow()
-    {
+    public static void screenshot() {
         try {
+            String dataHora = (new SimpleDateFormat("yyyy-MM-dd_-_HH-mm-ss-SSS")).format(new Date());
             byte[] screenshot = ((TakesScreenshot) BaseSteps.browser).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png");
-            scenario.write("URL ScreenShot: " + BaseSteps.browser.getCurrentUrl());
-        } catch (WebDriverException wde) {
-            scenario.write("Embed ScreenShot " + wde.getMessage());
+            scenario.attach(screenshot, "image/png", dataHora + "_screenshot.png");
         } catch (ClassCastException cce) {
             cce.printStackTrace();
         }
