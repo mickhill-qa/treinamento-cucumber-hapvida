@@ -24,6 +24,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: szenius/set-timezone@v1.2
+        with:
+          timezoneLinux: "America/Sao_Paulo"
+
       - name: Configure git repository
         uses: actions/checkout@v3
 
@@ -34,19 +38,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Configure WebDriver for Chrome
+      - name: Configurando WebDriver for Chrome
         uses: nanasess/setup-chromedriver@v1
         with:
           chromedriver-version: '102.0.5005.61'
 
-      - name: Building Test
-        run: mvn test-compile
-
       - name: Executando Test
         run: mvn test
-
-      - name: Gerando Relatorio
-        run: mvn verify -DskipTests || true
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v3
@@ -54,11 +52,11 @@ jobs:
       - name: Upload arquivos
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'target/cucumber-reports/cucumber-html-reports'
+          path: 'target/report-builder'
 
       - name: Deploy arquivos no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
 
       - name: Link Relatorio
-        run: echo 'https://mickhill-qa.github.io/treinamento-cucumber-hapvida/feature-overview.html'
+        run: echo 'https://mickhill-qa.github.io/treinamento-cucumber-hapvida'

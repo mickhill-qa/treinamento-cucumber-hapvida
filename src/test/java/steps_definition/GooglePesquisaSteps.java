@@ -29,14 +29,14 @@ public class GooglePesquisaSteps extends BaseSteps
         String expectedPage = pageHome.getUrl();
         String currentPage = browser.getCurrentUrl();
         Assert.assertTrue( expectedPage.equals(currentPage) );
-        BaseSteps.screenShotNow();
+        BaseSteps.screenshot();
     }
 
     @Quando("^eu pesquisar por um assunto$")
     public void eu_pesquisar_por_um_assunto()
     {
         pageHome.preencherFormPesquisa("Teste Automatizado");
-        BaseSteps.screenShotNow();
+        BaseSteps.screenshot();
         pageHome.pesquisar();
     }
 
@@ -45,7 +45,7 @@ public class GooglePesquisaSteps extends BaseSteps
     {
         String txtAssertPage = pageResult.verResultadoPesquisa();
         Assert.assertEquals("Aproximadamente", txtAssertPage);
-        BaseSteps.screenShotNow();
+        BaseSteps.screenshot();
     }
 
 
@@ -58,7 +58,7 @@ public class GooglePesquisaSteps extends BaseSteps
     public void eu_pesquisar_sem_preencher_o_assunto()
     {
         pageHome.pesquisar();
-        BaseSteps.screenShotNow();
+        BaseSteps.screenshot();
     }
 
     @Entao("^continuarei na mesma pagian aguardando um assunto$")

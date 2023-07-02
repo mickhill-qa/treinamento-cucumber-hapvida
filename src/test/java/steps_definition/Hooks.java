@@ -17,8 +17,10 @@ public class Hooks
     @After
     public void AfterAllTest() throws Throwable
     {
-        if (BaseSteps.scenario.isFailed())
-            BaseSteps.screenShotNow();
+        if (BaseSteps.scenario.isFailed()) {
+            BaseSteps.screenshot();
+            throw new AssertionError("Erro no teste: " + BaseSteps.scenario.getSourceTagNames());
+        }
         BaseSteps.CloseBrowser();
     }
 }
